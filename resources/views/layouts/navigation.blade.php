@@ -18,56 +18,47 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+
+                    @if (in_array($userRole, ['patient', 'praktijkmanagement']))
+                        <x-nav-link :href="route('patient.index')" :active="request()->routeIs('patient.index')">
+                            {{ __('Patient') }}
+                        </x-nav-link>
+                    @endif
+
+                    @if (in_array($userRole, ['tandarts', 'praktijkmanagement']))
+                        <x-nav-link :href="route('tandarts.index')" :active="request()->routeIs('tandarts.index')">
+                            {{ __('Tandarts') }}
+                        </x-nav-link>
+                    @endif
+
+                    @if ($userRole === 'assistent')
+                        <x-nav-link :href="route('assistent.index')" :active="request()->routeIs('assistent.index')">
+                            {{ __('Assistent') }}
+                        </x-nav-link>
+                    @endif
+
+                    @if ($userRole === 'mondhygienist')
+                        <x-nav-link :href="route('mondhygienist.index')" :active="request()->routeIs('mondhygienist.index')">
+                            {{ __('Mondhygiënist') }}
+                        </x-nav-link>
+                    @endif
+
+                    @if ($userRole === 'praktijkmanagement')
+                        <x-nav-link :href="route('praktijkmanagement.index')" :active="request()->routeIs('praktijkmanagement.index')">
+                            {{ __('Praktijkmanagement') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('praktijkmanagement.userroles')" :active="request()->routeIs('praktijkmanagement.userroles')">
+                            {{ __('Gebruikersrollen') }}
+                        </x-nav-link>
+                    @endif
+
+                    @if ($userRole === 'admin')
+                        <x-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.index')">
+                            {{ __('Admin') }}
+                        </x-nav-link>
+                    @endif
                 </div>
             </div>
-
-            @if (in_array($userRole, ['patient', 'praktijkmanagement']))
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('patient.index')" :active="request()->routeIs('patient.index')">
-                        {{ __('Patient') }}
-                    </x-nav-link>
-                </div>
-            @endif
-
-            @if (in_array($userRole, ['tandarts', 'praktijkmanagement']))
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('tandarts.index')" :active="request()->routeIs('tandarts.index')">
-                        {{ __('Tandarts') }}
-                    </x-nav-link>
-                </div>
-            @endif
-
-            @if ($userRole === 'assistent')
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('assistent.index')" :active="request()->routeIs('assistent.index')">
-                        {{ __('Assistent') }}
-                    </x-nav-link>
-                </div>
-            @endif
-
-            @if ($userRole === 'mondhygienist')
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('mondhygienist.index')" :active="request()->routeIs('mondhygienist.index')">
-                        {{ __('Mondhygiënist') }}
-                    </x-nav-link>
-                </div>
-            @endif
-
-            @if ($userRole === 'praktijkmanagement')
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('praktijkmanagement.index')" :active="request()->routeIs('praktijkmanagement.index')">
-                        {{ __('Praktijkmanagement') }}
-                    </x-nav-link>
-                </div>
-            @endif
-
-            @if ($userRole === 'admin')
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.index')">
-                        {{ __('Admin') }}
-                    </x-nav-link>
-                </div>
-            @endif
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
@@ -149,6 +140,9 @@
             @if($userRole === 'praktijkmanagement')
                 <x-responsive-nav-link :href="route('praktijkmanagement.index')" :active="request()->routeIs('praktijkmanagement.index')">
                     {{ __('Praktijkmanagement Home') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('praktijkmanagement.userroles')" :active="request()->routeIs('praktijkmanagement.userroles')">
+                    {{ __('Gebruikersrollen') }}
                 </x-responsive-nav-link>
             @endif
 
